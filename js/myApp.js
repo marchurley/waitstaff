@@ -1,46 +1,67 @@
-angular.module('myApp', ['ngMessages']) // inject ngmessages-module as dependency
-    .constant('VERSION', '2.0')
-    .run(function(VERSION, $rootScope) { // With run I inject the scope into the rootScope = everywhere
-	    $rootScope.version = VERSION;
-	})
-    .controller('MyCtrl', function($scope) { // With controller I use for logical blocks of code to inject on certain tags
-    	// if statement that changes the array value used based upon the 
-    	// value of the model.  The chosenPronouns array will be updated 
-        this.check = function (gender){
-            if (gender == "male") {
-            this.chosenPronouns = ['he', 'him', 'his', 'He'];
-            } else {
-            this.chosenPronouns = ['she', 'her', 'her', 'She'];
-            }  
-        }
+angular.module('myApp', ['ngMessages'])
+    .controller('MyCtrl', function($scope) { 
        
-        this.firstScreen = true;
+        //Set initial values to 0
+        this.subTotal = 0;
+        this.tipTotal = 0;
+        this.total = 0;
+        this.tipGrandTotal = 0;
+        this.mealCount = 0;
+        this.averageTip = 0;
+        
+        var grandTotal = 0;
 
+
+        //Validate form and calculate Subtotal, Tip, Total, Meal Count & Average Tip per Meal
         this.submit = function(){
             if( this.userInputForm.$valid ) {
-                this.inputValidated = true;
                 this.inputComplete = false;
-                this.firstScreen = false;
+                this.subTotal = this.mealPrice + ((this.taxRate / 100) * this.mealPrice);
+                this.tipTotal = ( this.tipPercentage / 100 ) * this.subTotal;
+                this.total = this.subTotal + this.tipTotal;
+  
+                this.mealCount ++;
+
+                this.tipGrandTotal = grandTotal + this.tipTotal;
+
+                grandTotal = this.tipGrandTotal;
+
+                this.averageTip = grandTotal / this.mealCount;
+
+                this.userInputForm.$setPristine();
+                this.mealPrice ="";
+                this.taxRate ="";
+                this.tipPercentage ="";
             } else {
-                this.inputValidated = false;
                 this.inputComplete = true;
             }
         }
 
-        this.startOver = function(){
-            this.firstScreen = true;
-            this.inputValidated = false; 
-            this.name =""; // this. -> I need to put vm. infront of every version
-            $scope.dirtyTask =""; // $scope. -> I only need to put it here
-            $scope.obnoxiousCelebrity ="";
-            $scope.jobTitle ="";
-            $scope.celebrity ="";
-            $scope.hugeNumber ="";
-            $scope.tediousTask ="";
-            $scope.uselessSkill ="";
-            $scope.adjective ="";
-            this.userInputForm.$setPristine(); // I could have just put $scope in front without having to add .vm everywhere in html code
+        //Cancel by resetting inputs and error message
+        this.cancel = function(){
+            this.userInputForm.$setPristine();
+            this.mealPrice ="";
+            this.taxRate ="";
+            this.tipPercentage =""; 
+            this.inputComplete = false;
         }
+
+        //Starting over by setting all values back to 0, resetting inputs and error message
+        this.startOver = function(){
+            this.subTotal = 0;
+            this.tipTotal = 0;
+            this.total = 0;
+            this.tipGrandTotal = 0;
+            this.mealCount = 0;
+            this.averageTip = 0;
+            grandTotal = 0;
+            this.inputComplete = false;
+            this.mealPrice ="";
+            this.taxRate ="";
+            this.tipPercentage =""; 
+            this.userInputForm.$setPristine(); 
+        }
+            
 
     });
 

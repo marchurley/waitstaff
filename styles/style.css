@@ -22,13 +22,21 @@ h2 {
 	border-bottom: 2px solid black;
 	font-size: 2em;
 	padding: 0.5em 0em 0.5em 1em;
+}
 
-
+button, .button {
+    background-color: darkgrey;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
 /*---------------------------------------------------------------------------------
-   Wrappers
+   Main Wrappers
 ---------------------------------------------------------------------------------*/
 
 .mainWrapper {
@@ -78,10 +86,19 @@ h2 {
 	font-size: 1.3em;
 }
 
+.outputWrapper {
+	width: 100%;
+	margin-top: 1em;
+	font-size: 1.3em;	
+}
+
 .halfWidth{
 	width: 48%;
 }
 
+/*---------------------------------------------------------------------------------
+   Left Side
+---------------------------------------------------------------------------------*/
 
 
 .textL {
@@ -109,17 +126,25 @@ h2 {
 .buttons {
 	text-align: center;
 	clear: both;
-	margin-top: 15em;
 }
 
+.lastInputLine {
+	margin-bottom: 4em;
+}
 
-
-
-.outputWrapper {
-	width: 100%;
+.errorText {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	text-align: center;
+	font-style: italic;
+	color: red;
 	margin-top: 1em;
-	font-size: 1.3em;	
 }
+
+
+/*---------------------------------------------------------------------------------
+   Right Side Top
+---------------------------------------------------------------------------------*/
 
 .textR {
 	float: left;
@@ -127,19 +152,25 @@ h2 {
 	margin-top: 0.8em;
 }
 
-.inputR {
+.outputR {
 	float: right;
-	text-align: left;
+	text-align: right;
 	margin-top: 0.8em;
 }
 
+.outputR p {
+	width: 40%;
+}
+
 hr {
-	width: 35%;
-	margin-left: 30%;
+	width: 55%;
+	margin-left: 25%;
 	margin-bottom: -1em;
 }
 
-
+/*---------------------------------------------------------------------------------
+   Right Side Bottom
+---------------------------------------------------------------------------------*/
 
 .oneThirdWidth {
 	width: 38%;
@@ -149,6 +180,10 @@ hr {
 	width: 60%;
 }
 
+/*---------------------------------------------------------------------------------
+   Reset
+---------------------------------------------------------------------------------*/
+
 .reset {
 	float: right;
 	clear: both;
@@ -156,16 +191,10 @@ hr {
 	margin-right: 2em;
 }
 
-button, .button {
-    background-color: darkgrey;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
-}
 
+/*---------------------------------------------------------------------------------
+   Responsive
+---------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 1030px) {
 	.rightWrapper,
