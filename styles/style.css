@@ -69,7 +69,7 @@ button, .button {
 .customerChargesWrapper,
 .myEarningsWrapper {
 	width: 99%;
-	height: 47%;
+	height: 60%;
 }
 
 .customerChargesWrapper {
@@ -187,7 +187,7 @@ hr {
 .reset {
 	float: right;
 	clear: both;
-	margin-top: 2em;
+	margin-top: 6em;
 	margin-right: 2em;
 }
 
